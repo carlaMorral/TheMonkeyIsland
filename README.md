@@ -1,31 +1,19 @@
----
-author:
-- Irene Pérez, Carlos Borrego, Eloi Puertas
-  date: Febrer 2021
-  title: Pràctica 1 - Client Servidor (Software distribüit)
----
 
-**Recordeu que s'ha de fer el [desenvolupament de les pràctiques](Desenvolupament_de_les_practiques.md) mitjançant els Pull Requests!!!**
+# The Monkey Island
 
 [![homepage][1]][2]
 
 [1]:  figures/sword.png
 [2]:  https://www.youtube.com/watch?v=s_bHFhs_65Q
 
+## Class Diagram
 
-Objectiu
-========
 
-L'objectiu docent de la pràctica és aprendre a utilitzar els mecanismes
-de programació Client/Servidor en JAVA. Concretament és necessari que
-aprengueu com programar amb:
+![class](figures/class.png)
 
--   Sockets amb JAVA (utilitzant l'API Socket de Java.net)
 
--   Servidor multi-petició amb threads (JAVA)
+## Functionalities
 
-Tasques a realitzar
-===================
 
 -   El client ha de tenir un mode manual (menú per pantalla) i un mode
     automàtic (juga automàticament segons els paràmetres introduïts)
@@ -40,72 +28,10 @@ Tasques a realitzar
 
 -   Fer proves de robustesa i d'estrès del sistema.
 
--   Realitzar codi, Junit, JavaDoc, dossier amb Diagrames i
-    autoevaluació de la pràctica.
+-   Realitzar codi, Junit, JavaDoc i dossier amb Diagrames
 
-Calendari
-=========
-Data Sessió |Tasca | Data límit Peer Review| Puntuació del Review
-|---|---|---|---|
-|  17/02/2021| a) Creació de grups. b) Preparació del GitHub. c) Realiztizació de la prac0 | 24/02 | 1
-|24/02/2021| Disseny del sistema distribuït. Implementació Protocol.|03/03 |1
-|03/03/2021| Implementació Client. | 10/03 | 1
-|10/03/2021| Implementació Servidor amb Multithread 1 Player. |17/03 | 1
-|17/03/2021| Implementació Servidor amb Multithread 2 Players. |24/03| 1
-|24/03/2021| Sessió de Test creuat. Tasca Taller.  |30/03| 1
-|30/03/2021| Entrega codi, memòria i log execució al CV. Tasca Fitxer
+## How to run it
 
-
-Notes importants
-================
-
--   No es demana que s'implementi cap interfície gràfica.
-
--   En mode manual l'usuari ha de poder jugar tantes partides com
-    vulgui. Haurà d'introduir el seu Identificador de jugador i a
-    continuació podrà fer tantes partides com vulgui o pugui.
-
--   S'haurà de poder sortir en qualsevol moment de la partida, tallant
-    la comunicació amb el servidor.
-
--   En cada sessió de pràctiques es comprovarà si s'ha arribat a
-    l'objectiu fixat en el calendari per la sessió anterior. Feu un bon
-    ús de la programació Orientada a Objectes i de la metodologia
-    Test-Driven Development. Es penalitzarà si no es fa un bon ús
-    d'interfícies JAVA, separació de responsabilitats i creació de
-    tests.
-
-Notes sobre el Disseny
-======================
-
--   Recordeu que s'han de dissenyar dues aplicacions, Client i Servidor.
-    Poden tenir classes en comú, per exemple ComUtils.
-
--   La classe ComUtils l'heu d'extendre amb els vostres mètodes per a
-    seguir fil per randa el protocol. Si hi ha mètodes que no els
-    necessiteu, els podeu esborrar.
-
--   No podeu usar classes de Java per a serialitzar els vostres
-    objectes, ja que no seguiran el protocol demanat. Useu les
-    primitives del ComUtils sempre.
-
--   Feu servir JUnit per comprovar el protocol, per exemple, si s'ha
-    enviat una comanda, espero rebre'n unes de determinades. Penseu que
-    sempre podríeu rebre un missatge d'error.
-
--   Per a guardar les comandes d'entrada és una bona pràctica usar un
-    HashMap per cada opció entrada i el seu valor i consultar el seu
-    valor quan sigui necessari.
-
--   El Client en mode automàtic ha de prendre les decisions més adients
-    per guanyar la partida.
-
--   Feu servir dues implementacions diferents del thread de control de
-    la partida del Servidor pel cas 1 player i 2 player. En l'execució
-    s'especificarà el mode de joc del Servidor.
-
-Execució
-========
 
     servidor> java -jar server.jar -h 
     Us: java -jar server.jar -p <port> -m <1|2> 
@@ -131,56 +57,7 @@ Execució
 -   Si no s'especifica, el mode per defecte és el manual.
 
 
-Sortida demanada
-================
-
--   El fitxer de log ha de ser la versió textual del que s'està enviant
-    pel socket.
-
--   Només cal guardar el fitxer de log del Servidor. Heu de guardar
-    només el contingut de la comunicació per socket, tant del que es rep
-    com el que s'està enviant. En cas de que hi hagi un error també heu
-    de guardar el missatge que s'enviï o que es rebi pel socket.
-
--   El nom del fitxer de log l'heu de construir de la següent forma:
-
--   \"Server\"+Thread.currentThread().getName()+\".log\"
-
--   Sobretot feu una carpeta src per cada aplicació on les classes
-    principals es diguin Clienti Server respectivament.
-
-Entregues
-=========
-
--   Actualitzar codi a Github mitjançant Pull Requests amb Peer Code Review.
--   Sessió de Test obligatòria (Mínim un component de la
-    parella).
-
--   A CampusVirtual: 30/03/2021 23.55h.
-
-Avaluació
-=========
-
--   En cas de que el codi **no compleixi les especificacions determinades**
-    o **no segueixi el protocol acordat**, la pràctica estarà **SUSPESA**.
-    Totes les entregues s'executaran de forma automàtica contra els nostres
-    servidors i clients amb diferents jocs de proves.
-    Es recomana que feu els vostres propis jocs de proves per a provar el vostre
-    codi amb els demés en la sessió de test.
-
--   En cas de que la pràctica funcioni de forma correcta la **nota individual** de cada alumne es ponderarà de la següent forma:
-
-    - 80% Codi:
-
-        -   50% Review del Codi
-
-        -   50% Codi (Sense bugs, 1 client i servidor en els modes) + Tests + Memòria i diagrames.
-
-    - 20% Peer Testing sessió de test
-
-
-Batalla d'insults
-=================
+## Insult battle
 
 La batalla d'insults d'espasa és una activitat que tot pirata ha de
 dominar. A tot el Carib, molts pirates fan servir insults estàndards.
@@ -270,7 +147,7 @@ Aquí teniu la llista d'insults estàndards del Carib amb les seves corresponent
 
 
 
-Missatges
+Message types
 =========
 El client (c) i el servidor (s) suporta 7 tipus de missatges amb els
 següents codis d'operacions:
@@ -354,8 +231,7 @@ Els possibles missatges d'error són:
 -   ¡Me he candado de esperar tus mensajes, mequetrefe! ¡Hasta la
     vista!
 
-Protocol
-========
+## The protocol
 
 El pirates comencen triant de manera segura qui comença a insultar. El
 Carib està ple de monedes amb dues cares, per això, els pirates no
@@ -463,8 +339,7 @@ missatge de tipus ERROR i la lluita s'acabarà:
 
     c/s: ERROR ¡Código de operación inválido, marinero de agua dulce! !Hasta la vista!
 
-Exemple partida
-===============
+## Game example
 
 ```
 C- HELLO 1234 Barbazul
@@ -547,8 +422,7 @@ S- [conexion closed]
 
 
 
-Versió 2 jugadors
-==================
+## Two player version
 
 A la versió de 2 jugadors el servidor farà de proxy de comunicació entre els dos clients dels dos jugadors. Si un client respon amb el mateix ID de nom que ha rebut, l'altre client ha d'enviar un missatge d'error i tancarà la connexió.
 
